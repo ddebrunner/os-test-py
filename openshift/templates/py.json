@@ -234,6 +234,22 @@
                     "memory": "${MEMORY_LIMIT}"
                   }
                 }
+              },
+              {
+                "name": "streams-monitor",
+                "image": "${NAME}-monitor:latest",
+                "resources": {
+                    "limits": {
+                        "memory": "${MEMORY_LIMIT}"
+                    }
+                },
+                "env": [
+                ],
+                "resources": {
+                  "limits": {
+                    "memory": "${MEMORY_LIMIT}"
+                  }
+                }
               }
             ]
           }
