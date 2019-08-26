@@ -4,7 +4,7 @@
   "metadata": {
     "name": "dan-py",
     "annotations": {
-      "openshift.io/display-name": "Nginx HTTP server and a reverse proxy",
+      "openshift.io/display-name": "Streams Nginx",
       "description": "An example Nginx HTTP server and a reverse proxy (nginx) application that serves static content. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/nginx-ex/blob/master/README.md.",
       "tags": "quickstart,nginx",
       "iconClass": "icon-nginx",
