@@ -23,7 +23,7 @@
       "kind": "ImageStream",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${NAME}",
+        "name": "${NAME}-monitor",
         "annotations": {
           "description": "Keeps track of changes in the application image"
         }
@@ -33,7 +33,7 @@
       "kind": "BuildConfig",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${NAME}",
+        "name": "${NAME}-monitor",
         "annotations": {
           "description": "Defines how to build the application",
           "template.alpha.openshift.io/wait-for-ready": "true"
@@ -61,7 +61,7 @@
         "output": {
           "to": {
             "kind": "ImageStreamTag",
-            "name": "${NAME}:latest"
+            "name": "${NAME}-monitor:latest"
           }
         },
         "triggers": [
@@ -128,7 +128,7 @@
         "output": {
           "to": {
             "kind": "ImageStreamTag",
-            "name": "${NAME}:latest"
+            "name": "${NAME}-nginx:latest"
           }
         },
         "triggers": [
@@ -177,7 +177,7 @@
               ],
               "from": {
                 "kind": "ImageStreamTag",
-                "name": "${NAME}:latest"
+                "name": "${NAME}-nginx:latest"
               }
             }
           },
@@ -200,7 +200,7 @@
             "containers": [
               {
                 "name": "streams-nginx",
-                "image": " ",
+                "image": "${NAME}-nginx:latest",
                 "ports": [
                   {
                     "containerPort": 8080
@@ -275,7 +275,7 @@
       "displayName": "Git Repository URL",
       "description": "The URL of the repository with your application source code.",
       "required": true,
-      "value": "https://github.com/sclorg/nginx-ex.git"
+      "value": "https://github.com/ddebrunner/os-test-py.git"
     },
     {
       "name": "SOURCE_REPOSITORY_REF",
