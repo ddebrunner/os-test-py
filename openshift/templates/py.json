@@ -16,7 +16,7 @@
   },
   "message": "The following service(s) have been created in your project: ${NAME}.\n\nFor more information about using this template, including OpenShift considerations, see https://github.com/sclorg/nginx-ex/blob/master/README.md.",
   "labels": {
-    "template": "dan-py"
+    "template": "os-test-py"
   },
   "objects": [
     {
@@ -160,7 +160,7 @@
       "displayName": "Name",
       "description": "The name assigned to all of the frontend objects defined in this template.",
       "required": true,
-      "value": "dan-py"
+      "value": "os-test-py"
     },
     {
       "name": "NAMESPACE",
