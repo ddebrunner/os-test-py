@@ -182,6 +182,19 @@
             }
           },
           {
+            "type": "ImageChange",
+            "imageChangeParams": {
+              "automatic": true,
+              "containerNames": [
+                "streams-monitor"
+              ],
+              "from": {
+                "kind": "ImageStreamTag",
+                "name": "${NAME}-monitor:latest"
+              }
+            }
+          },
+          {
             "type": "ConfigChange"
           }
         ],
