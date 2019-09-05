@@ -207,12 +207,10 @@
             "name": "${NAME}",
             "labels": {
               "name": "${NAME}"
-            },
-          "spec": {
-              "volumes": [ {"name": "nginx-job-configs", "emptyDir": {}}]
             }
           },
           "spec": {
+            "volumes": [ {"name": "nginx-job-configs", "emptyDir": {}}],
             "containers": [
               {
                 "name": "streams-nginx",
