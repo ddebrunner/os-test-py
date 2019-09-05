@@ -4,6 +4,11 @@ import datetime
 
 info.main()
 
-while True:
-    print('Now:', datetime.datetime.now())
-    time.sleep(300)
+from file_config import FileWriter
+cfg = FileWriter(location='/opt/streams_job_configs')
+
+em = EndpointMonitor(config=cfg, job_filter=lambda job: True)
+em.run()
+
+
+
