@@ -52,5 +52,5 @@ class FileWriter(object):
         f.write('  proxy_set_header  X-Forwarded-For $remote_addr;\n')
         f.write('  proxy_set_header  X-Forwarded-Host $remote_addr;\n')
         #f.write('  proxy_pass %s://streams_job_%s/;\n' % (proto, jobid))
-        f.write('  proxy_pass %s/;\n' % (server_url(server)))
+        f.write('  proxy_pass %s;\n' % (server_url(server)))
         f.write('}\n')
