@@ -34,7 +34,7 @@ class EndpointMonitor(object):
     @property
     def instance(self):
         if self._sc is None:
-            self._sc = sxr.StreamsConnection(os.environ['STREAMS_USERNAME', os.environ['STREAMS_PASSWORD'], resource_url=self._url)
+            self._sc = sxr.StreamsConnection(os.environ['STREAMS_USERNAME'], os.environ['STREAMS_PASSWORD'], resource_url=self._url)
             if self._verify is not None:
                 self._sc.session.verify = self._verify
             self._ins = self._sc.get_instances()[0]
