@@ -22,18 +22,20 @@ def _get_server_address(op):
         return Server(proto, ip, port, op.name)
 
 class EndpointMonitor(object):
-    def __init__(self, config, job_filter):
+    def __init__(self, resource_url, config, job_filter, verify=None):
         self._jobs = {}
+        self._url = resource_url
         self._config = config
         self._job_filter = job_filter
+        self._verify = verify
         self._sc = None
 
     @property
     def instance(self):
         if self._sc is None:
-            #self._sc = sxr.StreamsConnection(resource_url='https://streamsqse.localdomain:8443/streams/rest/resources')
-            #self._sc.session.verify = False
-            self._sc = sxr.StreamingAnalyticsConnection()
+            self._sc = sxr.StreamsConnection(resource_url=self._url)
+            if self._verify is not None:
+                self._sc.session.verify = self._verify
             self._ins = self._sc.get_instances()[0]
         return self._ins
 
