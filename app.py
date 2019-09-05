@@ -10,7 +10,7 @@ url = os.environ['STREAMS_ENDPOINT_INSTANCE_URL']
 
 cfg = FileWriter(location='/opt/streams_job_configs')
 
-em = EndpointMonitor(resource_url=url, config=cfg, job_filter=lambda job: True)
+em = EndpointMonitor(resource_url=url, config=cfg, job_filter=lambda job: True, verify=False)
 em.run()
 
 
