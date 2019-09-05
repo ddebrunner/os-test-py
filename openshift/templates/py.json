@@ -23,7 +23,7 @@
       "kind": "ImageStream",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${NAME}-monitor",
+        "name": "${NAME}-endpoint-monitor",
         "annotations": {
           "description": "Keeps track of changes in the application image"
         }
@@ -33,7 +33,7 @@
       "kind": "BuildConfig",
       "apiVersion": "v1",
       "metadata": {
-        "name": "${NAME}-monitor",
+        "name": "${NAME}-endpoint-monitor",
         "annotations": {
           "description": "Defines how to build the application",
           "template.alpha.openshift.io/wait-for-ready": "true"
@@ -186,11 +186,11 @@
             "imageChangeParams": {
               "automatic": true,
               "containerNames": [
-                "streams-monitor"
+                "streams-endpoint-monitor"
               ],
               "from": {
                 "kind": "ImageStreamTag",
-                "name": "${NAME}-monitor:latest"
+                "name": "${NAME}-endpoint-monitor:latest"
               }
             }
           },
@@ -208,12 +208,16 @@
             "labels": {
               "name": "${NAME}"
             }
+          "spec": {
+              "volumes": [ {"name": "nginx-job-configs", "emptyDir": {}}]
+            }
           },
           "spec": {
             "containers": [
               {
                 "name": "streams-nginx",
                 "image": "${NAME}-nginx:latest",
+                "volumeMounts": [ {"name": "nginx-job-configs", "mountPath": "/streams_job_configs"}]
                 "ports": [
                   {
                     "containerPort": 8080
@@ -249,8 +253,9 @@
                 }
               },
               {
-                "name": "streams-monitor",
-                "image": "${NAME}-monitor:latest",
+                "name": "streams-endpoint-monitor",
+                "image": "${NAME}-endpoint-monitor:latest",
+                "volumeMounts": [ {"name": "nginx-job-configs", "mountPath": "/streams_job_configs"}]
                 "resources": {
                     "limits": {
                         "memory": "${MEMORY_LIMIT}"
