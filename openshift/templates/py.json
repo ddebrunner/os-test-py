@@ -61,7 +61,7 @@
         "output": {
           "to": {
             "kind": "ImageStreamTag",
-            "name": "${NAME}-monitor:latest"
+            "name": "${NAME}-endpoint-monitor:latest"
           }
         },
         "triggers": [
