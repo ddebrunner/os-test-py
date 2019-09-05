@@ -243,12 +243,7 @@
                     }
                 },
                 "env": [
-                ],
-                "resources": {
-                  "limits": {
-                    "memory": "${MEMORY_LIMIT}"
-                  }
-                }
+                ]
               },
               {
                 "name": "streams-endpoint-monitor",
@@ -260,12 +255,7 @@
                     }
                 },
                 "env": [
-                ],
-                "resources": {
-                  "limits": {
-                    "memory": "${MEMORY_LIMIT}"
-                  }
-                }
+                ]
               }
             ]
           }
