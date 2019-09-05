@@ -38,16 +38,20 @@ class FileWriter(object):
         return fcfn
 
     def _config_contents(self, f, jobid, entry):
-        f.write('upstream streams_job_%s {\n' % jobid)
-        proto = None
+        #f.write('upstream streams_job_%s {\n' % jobid)
+        #proto = None
         for server in entry['servers']:
-            proto = server.proto
-            f.write('  server %s;\n' % server_url(server))
-            f.write('}\n')
+            pass
+        #    proto = server.proto
+        #    f.write('  server %s;\n' % server_url(server))
+        #    f.write('}\n'
 
         f.write('location %s {\n' % entry['location'])
         f.write('  proxy_set_header Host $host;\n')
         f.write('  proxy_set_header X-Real-IP $remote_addr;\n')
         f.write('  proxy_set_header X-Forwarded-Proto %s ;\n' % proto)
-        f.write('  proxy_pass %s://streams_job_%s/;\n' % (proto, jobid))
+        f.write('  proxy_set_header  X-Forwarded-For $remote_addr;\n')
+        f.write('  proxy_set_header  X-Forwarded-Host $remote_addr;\n')
+        #f.write('  proxy_pass %s://streams_job_%s/;\n' % (proto, jobid))
+        f.write('  proxy_pass %s/;\n' % (server_url(server)))
         f.write('}\n')
