@@ -5,11 +5,15 @@ import collections
 import time
 import os
 import streamsx.rest as sxr
+import streamsx.rest_primitives
 
 Server = collections.namedtuple('Server', ['proto', 'ip', 'port', 'oid'])
 
 def _get_server_address(op):
-    ip = op.get_pe().get_resource_allocation().get_resource().ipAddress
+    pe = op.get_pe()
+    # No get_resource on PE
+    pe_resource = streamsx.rest_primitives.Resource(pe.rest_client.make_request(pe.resource), pe.rest_client)
+    ip = pe_resource.ipAddress
     port = None
     https = None
     for m in op.get_metrics():
@@ -61,7 +65,6 @@ class EndpointMonitor(object):
         if current_jobs is None:
             return
         existing_jobs = list(self._jobs.keys())
-        print('existing_keys', existing_jobs)
         for jobid in existing_jobs:
             ne = current_jobs.pop(jobid, None)
             if ne is None:
