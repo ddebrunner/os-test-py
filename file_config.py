@@ -41,8 +41,7 @@ class FileWriter(object):
         #f.write('upstream streams_job_%s {\n' % jobid)
         #proto = None
         for server in entry['servers']:
-            pass
-        #    proto = server.proto
+             proto = server.proto
         #    f.write('  server %s;\n' % server_url(server))
         #    f.write('}\n'
 
