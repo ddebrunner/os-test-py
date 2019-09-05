@@ -215,7 +215,7 @@
               {
                 "name": "streams-nginx",
                 "image": "${NAME}-nginx:latest",
-                "volumeMounts": [ {"name": "nginx-job-configs", "mountPath": "/streams_job_configs"}],
+                "volumeMounts": [ {"name": "nginx-job-configs", "mountPath": "/opt/streams_job_configs"}],
                 "ports": [
                   {
                     "containerPort": 8080
@@ -248,7 +248,7 @@
               {
                 "name": "streams-endpoint-monitor",
                 "image": "${NAME}-endpoint-monitor:latest",
-                "volumeMounts": [ {"name": "nginx-job-configs", "mountPath": "/streams_job_configs"}],
+                "volumeMounts": [ {"name": "nginx-job-configs", "mountPath": "/opt/streams_job_configs"}],
                 "resources": {
                     "limits": {
                         "memory": "${MEMORY_LIMIT}"
