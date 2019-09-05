@@ -159,7 +159,7 @@
       "metadata": {
         "name": "${NAME}",
         "annotations": {
-          "description": "Defines how to deploy the application server",
+          "description": "Streams endpoint nginx and endpoint monitor",
           "template.alpha.openshift.io/wait-for-ready": "true"
         }
       },
@@ -259,6 +259,28 @@
               }
             ]
           }
+        }
+      }
+    },
+    {
+      "kind": "Service",
+      "apiVersion": "v1",
+      "metadata": {
+        "name": "${NAME}",
+        "annotations": {
+          "description": "Exposes Streams application endpoints"
+        }
+      },
+      "spec": {
+        "ports": [
+          {
+            "name": "web",
+            "port": 8080,
+            "targetPort": 8080
+          }
+        ],
+        "selector": {
+          "name": "${NAME}"
         }
       }
     }
