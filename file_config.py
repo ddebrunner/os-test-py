@@ -13,7 +13,7 @@ class FileWriter(object):
         
     def _reload(self):
         print('Monitor', 'RELOAD!')
-        with open(self._pipe_name, 'a') as f:
+        with open(self._pipe_name, 'w') as f:
             f.write('reload\n')
         print('Monitor', 'RELOADED!')
 
