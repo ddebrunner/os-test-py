@@ -1,4 +1,6 @@
 af=/opt/streams_job_configs/actions
+echo 'Starting action reader for' ${af}
+(
 while true
 do
     if [[ ! -p ${af} ]]; then
@@ -10,3 +12,4 @@ do
         nginx -s "${line}"
     fi
 done
+) &
