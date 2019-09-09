@@ -62,10 +62,10 @@ class EndpointMonitor(object):
     def _update(self):
         print("Scan for jobs")
         current_jobs = self._survey_jobs()
-        print("Existing jobs", existing_jobs)
         if not current_jobs:
             return
         existing_jobs = list(self._jobs.keys())
+        print("Existing jobs", existing_jobs)
         for jobid in existing_jobs:
             ne = current_jobs.pop(jobid, None)
             if ne is None:
