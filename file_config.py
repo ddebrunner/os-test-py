@@ -9,19 +9,28 @@ def server_url(server):
 class FileWriter(object):
     def __init__(self, location):
         self._location = location
+        self._pipe_name = os.path.join(location, 'actions')
+        
+    def _reload(self):
+        with open(self._pipe_name) as f:
+            f.write('reload\n')
 
     def clean(self):
-        pass
+        # Remove all nginx-streams-job-%s.conf
+        if not os.path.exists(self._pipe_name):
+            os.mkfifo(self._pipe_name)
   
     def create(self, jobid, config):
         entry = {}
         entry['location'] = '/streams/job/' + str(jobid) + '/'
         entry['servers'] = config['servers']
         config['config_file'] = self._write_file(jobid, [entry])
+        self._reload()
 
     def delete(self, jobid, config):
         if 'config_file' in config:
             os.remove(config['config_file'])
+        self._reload()
 
     def update(self, jobid, old_config, config):
         pass
