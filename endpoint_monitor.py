@@ -97,7 +97,8 @@ class EndpointMonitor(object):
             try:
                  self._update()
                  time.sleep(30)
-            except IOError:
+            except IOError as e:
                  self._sc = None
+                 print("ERROR", e)
                  time.sleep(1)
 
