@@ -62,6 +62,7 @@ class EndpointMonitor(object):
     def _update(self):
         print("Scan for jobs")
         current_jobs = self._survey_jobs()
+        print("Existing jobs", existing_jobs)
         if not current_jobs:
             return
         existing_jobs = list(self._jobs.keys())
@@ -85,7 +86,7 @@ class EndpointMonitor(object):
         self._jobs[jobid] = ne
 
     def _new_job(self, jobid, ne):
-        print("NEW:", jobid, ne)
+        print("NEW:", jobid, ne, bool(ne['servers']))
         if ne['servers']:
             self._config.create(jobid, ne)
             self._jobs[jobid] = ne
