@@ -12,7 +12,7 @@ class FileWriter(object):
         self._pipe_name = os.path.join(location, 'actions')
         
     def _reload(self):
-        with open(self._pipe_name) as f:
+        with open(self._pipe_name, 'a') as f:
             f.write('reload\n')
 
     def clean(self):
