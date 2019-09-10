@@ -56,6 +56,11 @@ class FileWriter(object):
         #    f.write('  server %s;\n' % server_url(server))
         #    f.write('}\n'
 
+        # Work-around dojo not in v5 app images
+        f.write('location ^~ %s/streamsx.inet.dojo/ {\n' % entry['location'])
+        f.write('  proxy_pass https://ajax.googleapis.com/ajax/libs/dojo/1.14.1/;\n')
+        f.write('}\n')
+
         f.write('location %s {\n' % entry['location'])
         f.write('  proxy_set_header Host $host;\n')
         f.write('  proxy_set_header X-Real-IP $remote_addr;\n')
