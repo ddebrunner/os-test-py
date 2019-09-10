@@ -57,7 +57,7 @@ class FileWriter(object):
         #    f.write('}\n'
 
         # Work-around dojo not in v5 app images
-        f.write('location ^~ %s/streamsx.inet.dojo/ {\n' % entry['location'])
+        f.write('location ^~ %sstreamsx.inet.dojo/ {\n' % entry['location'])
         f.write('  proxy_pass https://ajax.googleapis.com/ajax/libs/dojo/1.14.1/;\n')
         f.write('}\n')
 
